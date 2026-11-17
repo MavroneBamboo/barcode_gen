@@ -21,3 +21,7 @@ Open `index.html` in a modern browser. The barcode library loads from jsDelivr, 
 - AP 9010: 105 × 48 mm, 12 labels (2 × 6), compatible with UniStat U4457.
 
 For each layout, page boundaries are calculated from A4 dimensions and the selected label grid.
+
+## Print history
+
+After the print dialog closes, confirm whether the sheet printed. Confirmed runs are stored in this browser on this device, with the timestamp, sticker type, barcode format, and full sequence. Expand a history entry to inspect each value, export all rows as CSV, or clear the local history.

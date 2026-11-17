@@ -4,20 +4,23 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Barcode Label Maker</title>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
 <style>
-:root{font:15px/1.45 system-ui,Segoe UI,sans-serif;color:#19251f;background:#f4f7f5}*{box-sizing:border-box}body{margin:0}header{padding:24px max(22px,calc((100vw - 1080px)/2));background:#fff;border-bottom:1px solid #dce5df}header small{color:#16704d;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1{margin:5px 0;font-size:32px;letter-spacing:-.04em}header p{margin:0;color:#617168}main{max-width:1080px;margin:26px auto;padding:0 20px;display:grid;grid-template-columns:minmax(290px,.85fr) minmax(380px,1.15fr);gap:18px}.card{background:#fff;border:1px solid #dce5df;border-radius:13px;padding:20px;box-shadow:0 4px 18px #19352508}h2{font-size:17px;margin:0 0 14px}label{display:block;font-weight:650;margin:15px 0 6px}textarea,select,input{width:100%;padding:11px;border:1px solid #ccd7d0;border-radius:8px;background:white;color:inherit;font:inherit}textarea{height:190px;resize:vertical;font:13px/1.5 Consolas,monospace}.hint,.meta{font-size:12px;color:#637269}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:9px;margin-top:17px}button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer}.primary{background:#176b4b;color:white;flex:1}.secondary{background:#edf5f0;color:#176b4b}.message{min-height:20px;color:#a33c32;font-size:13px;margin-top:9px}.tip{font-size:12px;color:#637269;background:#f6faf7;border-radius:8px;padding:11px;margin-top:14px}.preview-head{display:flex;align-items:center;justify-content:space-between}.badge{border-radius:20px;background:#edf5f0;color:#176b4b;padding:4px 9px;font-size:12px;font-weight:700}.preview{display:grid;grid-template-columns:repeat(var(--sheet-columns,4),minmax(0,1fr));grid-template-rows:repeat(var(--sheet-rows,11),auto);grid-auto-flow:column;gap:5px;max-height:490px;overflow:auto}.sticker{aspect-ratio:var(--label-ratio,1.9);border:1px dashed #cbd6cf;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 5px;overflow:hidden;background:#fff}.sticker svg{width:76%;height:55%;display:block}.caption{font:11px/1.1 Arial,sans-serif;margin-top:2px;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{grid-column:1/-1;text-align:center;color:#637269;padding:35px 8px}@media(max-width:740px){main{grid-template-columns:1fr;margin:16px auto}}@page{size:210mm 297mm;margin:0}@media print{body{background:#fff}header,main{display:none!important}#sheet{display:grid!important;width:210mm;height:297mm;padding:var(--sheet-margin-y) var(--sheet-margin-x);grid-template-columns:repeat(var(--sheet-columns),var(--label-width));grid-template-rows:repeat(var(--sheet-rows),var(--label-height));column-gap:0;row-gap:0;align-content:start}.print-label{width:var(--label-width);height:var(--label-height);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.4mm 1mm}.print-label svg{width:76%;height:var(--barcode-height);display:block}.print-caption{font:7.5pt Arial,sans-serif;line-height:1;margin-top:.6mm;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden}}
+:root{font:15px/1.45 system-ui,Segoe UI,sans-serif;color:#19251f;background:#f4f7f5}*{box-sizing:border-box}body{margin:0}header{padding:24px max(22px,calc((100vw - 1080px)/2));background:#fff;border-bottom:1px solid #dce5df}header small{color:#16704d;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1{margin:5px 0;font-size:32px;letter-spacing:-.04em}header p{margin:0;color:#617168}main{max-width:1080px;margin:26px auto;padding:0 20px;display:grid;grid-template-columns:minmax(290px,.85fr) minmax(380px,1.15fr);gap:18px}.card{background:#fff;border:1px solid #dce5df;border-radius:13px;padding:20px;box-shadow:0 4px 18px #19352508}h2{font-size:17px;margin:0 0 14px}label{display:block;font-weight:650;margin:15px 0 6px}textarea,select,input{width:100%;padding:11px;border:1px solid #ccd7d0;border-radius:8px;background:white;color:inherit;font:inherit}textarea{height:190px;resize:vertical;font:13px/1.5 Consolas,monospace}.hint,.meta{font-size:12px;color:#637269}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:9px;margin-top:17px}button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer}.primary{background:#176b4b;color:white;flex:1}.secondary{background:#edf5f0;color:#176b4b}.message{min-height:20px;color:#a33c32;font-size:13px;margin-top:9px}.tip{font-size:12px;color:#637269;background:#f6faf7;border-radius:8px;padding:11px;margin-top:14px}.preview-head{display:flex;align-items:center;justify-content:space-between}.badge{border-radius:20px;background:#edf5f0;color:#176b4b;padding:4px 9px;font-size:12px;font-weight:700}.preview{display:grid;grid-template-columns:repeat(var(--sheet-columns,4),minmax(0,1fr));grid-template-rows:repeat(var(--sheet-rows,11),auto);grid-auto-flow:column;gap:5px;max-height:490px;overflow:auto}.sticker{aspect-ratio:var(--label-ratio,1.9);border:1px dashed #cbd6cf;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 5px;overflow:hidden;background:#fff}.sticker svg{width:76%;height:55%;display:block}.caption{font:11px/1.1 Arial,sans-serif;margin-top:2px;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{grid-column:1/-1;text-align:center;color:#637269;padding:35px 8px}.history-card{grid-column:1/-1}.history-card summary{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700;cursor:pointer;list-style:none}.history-card summary::-webkit-details-marker{display:none}.history-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:14px 0}.history-buttons{display:flex;gap:8px}.history-list{display:grid;gap:9px}.history-entry{border:1px solid #dce5df;border-radius:8px;padding:10px 12px}.history-entry summary{font-weight:600}.history-values{max-height:240px;overflow:auto;columns:3;margin:10px 0 0;padding-left:24px;font:12px/1.6 Consolas,monospace}.history-empty{color:#637269;font-size:13px;padding:12px 0}@media(max-width:740px){main{grid-template-columns:1fr;margin:16px auto}.history-card{grid-column:1}}@page{size:210mm 297mm;margin:0}@media print{body{background:#fff}header,main{display:none!important}#sheet{display:grid!important;width:210mm;height:297mm;padding:var(--sheet-margin-y) var(--sheet-margin-x);grid-template-columns:repeat(var(--sheet-columns),var(--label-width));grid-template-rows:repeat(var(--sheet-rows),var(--label-height));column-gap:0;row-gap:0;align-content:start}.print-label{width:var(--label-width);height:var(--label-height);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.4mm 1mm}.print-label svg{width:76%;height:var(--barcode-height);display:block}.print-caption{font:7.5pt Arial,sans-serif;line-height:1;margin-top:.6mm;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden}}
 #sheet{display:none}
 </style></head>
 <body><header><small>Label Barcode Maker</small><h1>Barcodes, ready to print.</h1><p>Choose your sticker paper, generate a barcode sequence, and print.</p></header>
 <main><section class="card"><h2>Label details</h2><label for="stock">Sticker paper</label><select id="stock"><option value="herma4272" selected>HERMA 4272 — 48.3 × 25.4 mm</option><option value="herma4271">HERMA 4271 — 48.3 × 16.9 mm</option><option value="ap9010">AP 9010 — 105 × 48 mm</option></select><label for="first-value">First barcode value</label><input id="first-value" type="text" value="SRP209911" placeholder="e.g. SRP209911" autocomplete="off"><div class="hint" id="sequence-hint">The app numbers all 44 stickers from this value, down each column and then across.</div><label for="format">Barcode type</label><select id="format"><option value="CODE39">Code 39 (default)</option><option value="CODE128">Code 128</option><option value="EAN13">EAN-13</option><option value="UPC">UPC-A</option><option value="ITF14">ITF-14</option></select><div class="actions"><button class="primary" id="generate">Generate preview</button><button class="secondary" id="print">Print</button></div><div class="message" id="message" role="status"></div><div class="tip"><b>Print setup:</b> A4 portrait, 100% / Actual size, margins None, and browser headers and footers off. Test on plain paper first.</div></section>
-<section class="card"><div class="preview-head"><h2>Preview</h2><span class="badge" id="count">0 labels</span></div><div class="preview" id="preview"><div class="empty" id="empty-preview">Enter the first value and generate the labels.</div></div><p class="meta" id="stock-meta">HERMA 4272 · 44 stickers per A4 sheet · 4 columns × 11 rows</p></section></main><div id="sheet" aria-hidden="true"></div>
+<section class="card"><div class="preview-head"><h2>Preview</h2><span class="badge" id="count">0 labels</span></div><div class="preview" id="preview"><div class="empty" id="empty-preview">Enter the first value and generate the labels.</div></div><p class="meta" id="stock-meta">HERMA 4272 · 44 stickers per A4 sheet · 4 columns × 11 rows</p></section></main>
+<section class="card history-card"><details id="history-panel"><summary>Print history <span class="badge" id="history-count">0 printouts</span></summary><div class="history-toolbar"><p class="meta">Confirmed printouts are saved in this browser on this device.</p><div class="history-buttons"><button class="secondary" id="export-history" type="button">Export CSV</button><button class="secondary" id="clear-history" type="button">Clear history</button></div></div><div class="history-list" id="history-list"></div></details></section><div id="sheet" aria-hidden="true"></div>
 <script>
 const firstValue=document.querySelector('#first-value'),format=document.querySelector('#format'),stock=document.querySelector('#stock'),preview=document.querySelector('#preview'),count=document.querySelector('#count'),message=document.querySelector('#message'),sheet=document.querySelector('#sheet'),stockMeta=document.querySelector('#stock-meta'),sequenceHint=document.querySelector('#sequence-hint'),emptyPreview=document.querySelector('#empty-preview');
+const historyList=document.querySelector('#history-list'),historyCount=document.querySelector('#history-count');
+const HISTORY_KEY='barcodeLabelPrintHistoryV1';
 const templates={
   herma4272:{name:'HERMA 4272',labelWidth:48.26,labelHeight:25.4,columns:4,rows:11},
   herma4271:{name:'HERMA 4271',labelWidth:48.26,labelHeight:16.93,columns:4,rows:16},
   ap9010:{name:'AP 9010',labelWidth:105,labelHeight:48,columns:2,rows:6}
 };
-let layout,items=[];
+let layout,items=[],pendingPrint=null;
 function applyTemplate(){
   layout=templates[stock.value];
   const capacity=layout.columns*layout.rows;
@@ -64,9 +67,44 @@ function makeSheet(coded){
     let cap=document.createElement('div');cap.className='print-caption';cap.textContent=captionText(it.value);box.append(cap);sheet.append(box)
   }
 }
+function loadHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]')}catch{return []}}
+function saveHistory(history){localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}
+function renderHistory(){
+  const history=loadHistory();historyCount.textContent=`${history.length} ${history.length===1?'printout':'printouts'}`;historyList.replaceChildren();
+  if(!history.length){let empty=document.createElement('div');empty.className='history-empty';empty.textContent='No confirmed printouts recorded yet.';historyList.append(empty);return}
+  for(const entry of history){
+    const details=document.createElement('details');details.className='history-entry';
+    const summary=document.createElement('summary');const first=entry.values[0],last=entry.values[entry.values.length-1];
+    summary.textContent=`${new Date(entry.timestamp).toLocaleString()} · ${entry.templateName} · ${entry.barcodeType} · ${entry.values.length} labels · ${first}–${last}`;details.append(summary);
+    const list=document.createElement('ol');list.className='history-values';
+    for(const value of entry.values){const li=document.createElement('li');li.textContent=value;list.append(li)}
+    details.append(list);historyList.append(details)
+  }
+}
+function csvCell(value){return `"${String(value).replaceAll('"','""')}"`}
+document.querySelector('#export-history').addEventListener('click',()=>{
+  const history=loadHistory();if(!history.length)return;
+  const rows=[['Printed at','Sticker paper','Barcode type','Position','Barcode value']];
+  for(const entry of history)entry.values.forEach((value,index)=>rows.push([entry.timestamp,entry.templateName,entry.barcodeType,index+1,value]));
+  const blob=new Blob([rows.map(row=>row.map(csvCell).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});
+  const link=document.createElement('a');const url=URL.createObjectURL(blob);link.href=url;link.download='barcode-print-history.csv';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
+});
+document.querySelector('#clear-history').addEventListener('click',()=>{if(!loadHistory().length)return;if(confirm('Clear all saved print history from this browser?')){localStorage.removeItem(HISTORY_KEY);renderHistory()}});
 stock.addEventListener('change',()=>{applyTemplate();if(firstValue.value.trim())generate()});
 format.addEventListener('change',()=>{if(items.length)generate()});
 document.querySelector('#generate').onclick=generate;
-document.querySelector('#print').onclick=()=>{if(!items.length)generate();if(items.length)window.print()};
-applyTemplate();
+document.querySelector('#print').onclick=()=>{
+  if(!items.length)generate();if(!items.length)return;
+  pendingPrint={timestamp:new Date().toISOString(),templateName:layout.name,barcodeType:format.value,values:items.map(item=>item.value)};
+  window.print()
+};
+window.addEventListener('afterprint',()=>{
+  if(!pendingPrint)return;
+  const entry=pendingPrint;pendingPrint=null;
+  if(confirm('Did the sheet print successfully? Select OK to save these barcode numbers in print history.')){
+    try{const history=loadHistory();history.unshift(entry);saveHistory(history);renderHistory()}
+    catch{alert('The printout could not be saved to browser history. Export or check browser storage settings.')}
+  }
+});
+applyTemplate();renderHistory();
 </script></body></html>
