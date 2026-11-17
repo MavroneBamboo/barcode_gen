@@ -4,27 +4,69 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Barcode Label Maker</title>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
 <style>
-:root{font:15px/1.45 system-ui,Segoe UI,sans-serif;color:#19251f;background:#f4f7f5}*{box-sizing:border-box}body{margin:0}header{padding:24px max(22px,calc((100vw - 1080px)/2));background:#fff;border-bottom:1px solid #dce5df}header small{color:#16704d;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1{margin:5px 0;font-size:32px;letter-spacing:-.04em}header p{margin:0;color:#617168}main{max-width:1080px;margin:26px auto;padding:0 20px;display:grid;grid-template-columns:minmax(290px,.85fr) minmax(380px,1.15fr);gap:18px}.card{background:#fff;border:1px solid #dce5df;border-radius:13px;padding:20px;box-shadow:0 4px 18px #19352508}h2{font-size:17px;margin:0 0 14px}label{display:block;font-weight:650;margin:15px 0 6px}textarea,select,input{width:100%;padding:11px;border:1px solid #ccd7d0;border-radius:8px;background:white;color:inherit;font:inherit}textarea{height:190px;resize:vertical;font:13px/1.5 Consolas,monospace}.hint,.meta{font-size:12px;color:#637269}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:9px;margin-top:17px}button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer}.primary{background:#176b4b;color:white;flex:1}.secondary{background:#edf5f0;color:#176b4b}.message{min-height:20px;color:#a33c32;font-size:13px;margin-top:9px}.tip{font-size:12px;color:#637269;background:#f6faf7;border-radius:8px;padding:11px;margin-top:14px}.preview-head{display:flex;align-items:center;justify-content:space-between}.badge{border-radius:20px;background:#edf5f0;color:#176b4b;padding:4px 9px;font-size:12px;font-weight:700}.preview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(11,auto);grid-auto-flow:column;gap:5px;max-height:490px;overflow:auto}.sticker{aspect-ratio:48.26/25.4;border:1px dashed #cbd6cf;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 5px;overflow:hidden;background:#fff}.sticker svg{width:76%;height:55%;display:block}.caption{font:11px/1.1 Arial,sans-serif;margin-top:2px;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{grid-column:1/-1;text-align:center;color:#637269;padding:35px 8px}@media(max-width:740px){main{grid-template-columns:1fr;margin:16px auto}}@page{size:210mm 297mm;margin:0}@media print{body{background:#fff}header,main{display:none!important}#sheet{display:grid!important;width:210mm;height:297mm;padding:var(--sheet-margin-y) var(--sheet-margin-x);grid-template-columns:repeat(4,48.26mm);grid-template-rows:repeat(11,25.4mm);column-gap:0;row-gap:0;align-content:start}.print-label{width:48.26mm;height:25.4mm;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.4mm 1mm}.print-label svg{width:76%;height:12mm;display:block}.print-caption{font:7.5pt Arial,sans-serif;line-height:1;margin-top:.6mm;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden}}
+:root{font:15px/1.45 system-ui,Segoe UI,sans-serif;color:#19251f;background:#f4f7f5}*{box-sizing:border-box}body{margin:0}header{padding:24px max(22px,calc((100vw - 1080px)/2));background:#fff;border-bottom:1px solid #dce5df}header small{color:#16704d;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1{margin:5px 0;font-size:32px;letter-spacing:-.04em}header p{margin:0;color:#617168}main{max-width:1080px;margin:26px auto;padding:0 20px;display:grid;grid-template-columns:minmax(290px,.85fr) minmax(380px,1.15fr);gap:18px}.card{background:#fff;border:1px solid #dce5df;border-radius:13px;padding:20px;box-shadow:0 4px 18px #19352508}h2{font-size:17px;margin:0 0 14px}label{display:block;font-weight:650;margin:15px 0 6px}textarea,select,input{width:100%;padding:11px;border:1px solid #ccd7d0;border-radius:8px;background:white;color:inherit;font:inherit}textarea{height:190px;resize:vertical;font:13px/1.5 Consolas,monospace}.hint,.meta{font-size:12px;color:#637269}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:9px;margin-top:17px}button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer}.primary{background:#176b4b;color:white;flex:1}.secondary{background:#edf5f0;color:#176b4b}.message{min-height:20px;color:#a33c32;font-size:13px;margin-top:9px}.tip{font-size:12px;color:#637269;background:#f6faf7;border-radius:8px;padding:11px;margin-top:14px}.preview-head{display:flex;align-items:center;justify-content:space-between}.badge{border-radius:20px;background:#edf5f0;color:#176b4b;padding:4px 9px;font-size:12px;font-weight:700}.preview{display:grid;grid-template-columns:repeat(var(--sheet-columns,4),minmax(0,1fr));grid-template-rows:repeat(var(--sheet-rows,11),auto);grid-auto-flow:column;gap:5px;max-height:490px;overflow:auto}.sticker{aspect-ratio:var(--label-ratio,1.9);border:1px dashed #cbd6cf;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 5px;overflow:hidden;background:#fff}.sticker svg{width:76%;height:55%;display:block}.caption{font:11px/1.1 Arial,sans-serif;margin-top:2px;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{grid-column:1/-1;text-align:center;color:#637269;padding:35px 8px}@media(max-width:740px){main{grid-template-columns:1fr;margin:16px auto}}@page{size:210mm 297mm;margin:0}@media print{body{background:#fff}header,main{display:none!important}#sheet{display:grid!important;width:210mm;height:297mm;padding:var(--sheet-margin-y) var(--sheet-margin-x);grid-template-columns:repeat(var(--sheet-columns),var(--label-width));grid-template-rows:repeat(var(--sheet-rows),var(--label-height));column-gap:0;row-gap:0;align-content:start}.print-label{width:var(--label-width);height:var(--label-height);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.4mm 1mm}.print-label svg{width:76%;height:var(--barcode-height);display:block}.print-caption{font:7.5pt Arial,sans-serif;line-height:1;margin-top:.6mm;max-width:100%;width:100%;text-align:center;white-space:nowrap;overflow:hidden}}
 #sheet{display:none}
 </style></head>
-<body><header><small>Label Barcode Maker</small><h1>Barcodes, ready to print.</h1><p>Design and print labels for HERMA 4272 A4 sheets.</p></header>
-<main><section class="card"><h2>Label details</h2><label for="first-value">First barcode value</label><input id="first-value" type="text" value="SRP209911" placeholder="e.g. SRP209911" autocomplete="off"><div class="hint">The app numbers all 44 stickers from this value, down each column and then across.</div><label for="format">Barcode type</label><select id="format"><option value="CODE39">Code 39 (default)</option><option value="CODE128">Code 128</option><option value="EAN13">EAN-13</option><option value="UPC">UPC-A</option><option value="ITF14">ITF-14</option></select><div class="actions"><button class="primary" id="generate">Generate preview</button><button class="secondary" id="print">Print</button></div><div class="message" id="message" role="status"></div><div class="tip"><b>Print setup:</b> A4 portrait, 100% / Actual size, margins None, and browser headers and footers off. Test on plain paper first.</div></section>
-<section class="card"><div class="preview-head"><h2>Preview</h2><span class="badge" id="count">0 labels</span></div><div class="preview" id="preview"><div class="empty">Enter the first value and generate all 44 labels.</div></div><p class="meta">HERMA 4272 · 44 stickers per A4 sheet · 4 columns × 11 rows</p></section></main><div id="sheet" aria-hidden="true"></div>
+<body><header><small>Label Barcode Maker</small><h1>Barcodes, ready to print.</h1><p>Choose your sticker paper, generate a barcode sequence, and print.</p></header>
+<main><section class="card"><h2>Label details</h2><label for="stock">Sticker paper</label><select id="stock"><option value="herma4272" selected>HERMA 4272 — 48.3 × 25.4 mm</option><option value="herma4271">HERMA 4271 — 48.3 × 16.9 mm</option><option value="ap9010">AP 9010 — 105 × 48 mm</option></select><label for="first-value">First barcode value</label><input id="first-value" type="text" value="SRP209911" placeholder="e.g. SRP209911" autocomplete="off"><div class="hint" id="sequence-hint">The app numbers all 44 stickers from this value, down each column and then across.</div><label for="format">Barcode type</label><select id="format"><option value="CODE39">Code 39 (default)</option><option value="CODE128">Code 128</option><option value="EAN13">EAN-13</option><option value="UPC">UPC-A</option><option value="ITF14">ITF-14</option></select><div class="actions"><button class="primary" id="generate">Generate preview</button><button class="secondary" id="print">Print</button></div><div class="message" id="message" role="status"></div><div class="tip"><b>Print setup:</b> A4 portrait, 100% / Actual size, margins None, and browser headers and footers off. Test on plain paper first.</div></section>
+<section class="card"><div class="preview-head"><h2>Preview</h2><span class="badge" id="count">0 labels</span></div><div class="preview" id="preview"><div class="empty" id="empty-preview">Enter the first value and generate the labels.</div></div><p class="meta" id="stock-meta">HERMA 4272 · 44 stickers per A4 sheet · 4 columns × 11 rows</p></section></main><div id="sheet" aria-hidden="true"></div>
 <script>
-const firstValue=document.querySelector('#first-value'),format=document.querySelector('#format'),preview=document.querySelector('#preview'),count=document.querySelector('#count'),message=document.querySelector('#message'),sheet=document.querySelector('#sheet');let items=[];
-const page={width:210,height:297,columns:4,rows:11,labelWidth:48.26,labelHeight:25.4};
-sheet.style.setProperty('--sheet-margin-x',((page.width-page.columns*page.labelWidth)/2)+'mm');
-sheet.style.setProperty('--sheet-margin-y',((page.height-page.rows*page.labelHeight)/2)+'mm');
+const firstValue=document.querySelector('#first-value'),format=document.querySelector('#format'),stock=document.querySelector('#stock'),preview=document.querySelector('#preview'),count=document.querySelector('#count'),message=document.querySelector('#message'),sheet=document.querySelector('#sheet'),stockMeta=document.querySelector('#stock-meta'),sequenceHint=document.querySelector('#sequence-hint'),emptyPreview=document.querySelector('#empty-preview');
+const templates={
+  herma4272:{name:'HERMA 4272',labelWidth:48.26,labelHeight:25.4,columns:4,rows:11},
+  herma4271:{name:'HERMA 4271',labelWidth:48.26,labelHeight:16.93,columns:4,rows:16},
+  ap9010:{name:'AP 9010',labelWidth:105,labelHeight:48,columns:2,rows:6}
+};
+let layout,items=[];
+function applyTemplate(){
+  layout=templates[stock.value];
+  const capacity=layout.columns*layout.rows;
+  const marginX=(210-layout.columns*layout.labelWidth)/2;
+  const marginY=(297-layout.rows*layout.labelHeight)/2;
+  for(const node of [sheet,preview]){
+    node.style.setProperty('--sheet-columns',layout.columns);
+    node.style.setProperty('--sheet-rows',layout.rows);
+    node.style.setProperty('--label-width',`${layout.labelWidth}mm`);
+    node.style.setProperty('--label-height',`${layout.labelHeight}mm`);
+    node.style.setProperty('--sheet-margin-x',`${marginX}mm`);
+    node.style.setProperty('--sheet-margin-y',`${marginY}mm`);
+    node.style.setProperty('--label-ratio',layout.labelWidth/layout.labelHeight);
+    node.style.setProperty('--barcode-height',`${layout.labelHeight*.42}mm`);
+  }
+  stockMeta.textContent=`${layout.name} · ${capacity} stickers per A4 sheet · ${layout.columns} columns × ${layout.rows} rows`;
+  sequenceHint.textContent=`The app numbers all ${capacity} stickers from this value, down each column and then across.`;
+  emptyPreview.textContent=`Enter the first value and generate all ${capacity} labels.`;
+  count.textContent=`0 / ${capacity} labels`;
+  items=[];sheet.replaceChildren();preview.replaceChildren(emptyPreview);
+}
 function barcode(value){let svg=document.createElementNS('http://www.w3.org/2000/svg','svg');JsBarcode(svg,value,{format:format.value,displayValue:false,margin:0,lineColor:'#111',background:'#fff'});return svg}
-function generate(){items=[];message.textContent='';let startValue=firstValue.value.trim();if(!window.JsBarcode){message.textContent='Barcode library did not load. Check your internet connection and reload.';return}let match=startValue.match(/^(.*?)(\d+)$/);if(!match){message.textContent='Enter a starting value that ends in a number, such as SRP209911.';return}let prefix=match[1],digits=match[2],base=BigInt(digits),width=digits.length;try{let coded=Array.from({length:44},(_,i)=>{let value=prefix+String(base+BigInt(i)).padStart(width,'0');return {value,svg:barcode(value)}});items=coded;preview.replaceChildren();for(let it of coded){let box=document.createElement('div');box.className='sticker';box.append(it.svg.cloneNode(true));let cap=document.createElement('div');cap.className='caption';cap.textContent=format.value==='CODE39'?`*${it.value}*`:it.value;box.append(cap);preview.append(box)}count.textContent='44 labels';makeSheet(coded)}catch(e){items=[];message.textContent=`Could not generate the sequence as ${format.value}. Check the starting value and format.`;preview.innerHTML='<div class="empty">Correct the starting value or choose another barcode type.</div>';count.textContent='0 labels';sheet.replaceChildren()}}
-function makeSheet(coded){sheet.replaceChildren();for(let pos=0;pos<44;pos++){let box=document.createElement('div');box.className='print-label';let row=Math.floor(pos/4),column=pos%4;let it=coded[column*11+row];box.append(it.svg.cloneNode(true));let cap=document.createElement('div');cap.className='print-caption';cap.textContent=format.value==='CODE39'?`*${it.value}*`:it.value;box.append(cap);sheet.append(box)}}
-document.querySelector('#generate').onclick=generate;document.querySelector('#print').onclick=()=>{if(!items.length)generate();if(items.length)window.print()};
+function captionText(value){return format.value==='CODE39'?`*${value}*`:value}
+function generate(){
+  items=[];message.textContent='';let startValue=firstValue.value.trim();
+  if(!window.JsBarcode){message.textContent='Barcode library did not load. Check your internet connection and reload.';return}
+  let match=startValue.match(/^(.*?)(\d+)$/);
+  if(!match){message.textContent='Enter a starting value that ends in a number, such as SRP209911.';return}
+  let prefix=match[1],digits=match[2],base=BigInt(digits),width=digits.length,capacity=layout.columns*layout.rows;
+  try{
+    let coded=Array.from({length:capacity},(_,i)=>{let value=prefix+String(base+BigInt(i)).padStart(width,'0');return {value,svg:barcode(value)}});
+    items=coded;preview.replaceChildren();
+    for(let it of coded){let box=document.createElement('div');box.className='sticker';box.append(it.svg.cloneNode(true));let cap=document.createElement('div');cap.className='caption';cap.textContent=captionText(it.value);box.append(cap);preview.append(box)}
+    count.textContent=`${capacity} labels`;
+    makeSheet(coded);
+  }catch(e){items=[];message.textContent=`Could not generate the sequence as ${format.value}. Check the starting value and format.`;preview.replaceChildren();let empty=document.createElement('div');empty.className='empty';empty.textContent='Correct the starting value or choose another barcode type.';preview.append(empty);count.textContent=`0 / ${capacity} labels`;sheet.replaceChildren()}
+}
+function makeSheet(coded){
+  sheet.replaceChildren();const capacity=layout.columns*layout.rows;
+  for(let pos=0;pos<capacity;pos++){
+    let box=document.createElement('div');box.className='print-label';
+    let row=Math.floor(pos/layout.columns),column=pos%layout.columns;
+    let it=coded[column*layout.rows+row];box.append(it.svg.cloneNode(true));
+    let cap=document.createElement('div');cap.className='print-caption';cap.textContent=captionText(it.value);box.append(cap);sheet.append(box)
+  }
+}
+stock.addEventListener('change',()=>{applyTemplate();if(firstValue.value.trim())generate()});
+format.addEventListener('change',()=>{if(items.length)generate()});
+document.querySelector('#generate').onclick=generate;
+document.querySelector('#print').onclick=()=>{if(!items.length)generate();if(items.length)window.print()};
+applyTemplate();
 </script></body></html>
-
-
-
-
-
-
-
-
