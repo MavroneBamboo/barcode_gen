@@ -24,4 +24,4 @@ For each layout, page boundaries are calculated from A4 dimensions and the selec
 
 ## Print history
 
-After the print dialog closes, confirm whether the sheet printed. Confirmed runs are stored in this browser on this device, with the timestamp, sticker type, barcode format, and full sequence. Expand a history entry to inspect each value, export all rows as CSV, or clear the local history.
+After the print dialog closes, confirm whether the sheet printed. Confirmed runs are stored in this browser on this device, with the timestamp, sticker type, barcode format, and full sequence. The Print History tab separates records by sticker-paper type. Expand an entry to inspect each value, export all rows as CSV, or clear the local history. After confirmation, the starting value advances to the last printed value plus one and the next sheet preview is generated. Printing hides the app interface and prints only the barcode sheet.
